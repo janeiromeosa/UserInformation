@@ -11,8 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btnSave:
                 showUserInformation();
+                handleSetEmail();
+                inputToFile();
                 break;
         }
     }
@@ -56,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showUserInformation(){
         Intent intent = new Intent(this, LogsActivity.class);
         String age = etAge.getText().toString();
-        intent.putExtra("email", age);
+        intent.putExtra("Age", age);
         startActivity(intent);
 
 
-        handleSetEmail();
+
     }//showUserInformation
 
 
@@ -77,6 +83,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }// created an instance of sharedPreferences, and gets
 
     private void inputToFile(){
+        File file = new File(getFilesDir(), "NameLogs.txt"); // creates a new file directory
 
+        try(FileOutputStream fileOutputStream = openFileOutput("NameLogs.txt", Context.MODE_PRIVATE);){
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(etFirstName.getText());
+            stringBuilder.append(" ");
+            stringBuilder.append(etLastName.getText());
+
+            fileOutputStream.write(stringBuilder.toString().getBytes());
+        } catch (IOException e) {
+            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }//inputToFile
 }//MainActivity

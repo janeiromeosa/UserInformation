@@ -6,10 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello"
-    android:id="@+id/tvResult"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name goes here"
+        android:id="@+id/tvName"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Age goes here"
+        android:id="@+id/tvAge"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email goes here"
+        android:id="@+id/tvEmail"
+        android:textSize="20sp"/>
 
 </LinearLayout>
